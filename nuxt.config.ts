@@ -5,12 +5,25 @@ export default defineNuxtConfig({
     compatibilityVersion: 4,
   },
 
-  modules: ['@nuxtjs/tailwindcss'],
+  modules: ['@nuxt/ui'],
+
+  css: ['~/assets/css/main.css'],
 
   devtools: { enabled: true },
 
   runtimeConfig: {
-  
-    openaiKey: '', 
-  }
+    openaiKey: '',
+  },
+
+  vite: {
+    server: {
+      watch: {
+        usePolling: true,
+      },
+      hmr: {
+        port: 3000,
+        clientPort: 3001,
+      },
+    },
+  },
 })

@@ -1,0 +1,28 @@
+services:
+  app:
+    build:
+      context: .
+      target: dev
+    ports:
+      - "3001:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NUXT_OPENAI_KEY=${NUXT_OPENAI_KEY}
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+    restart: unless-stopped
+
+  # Production service (use: docker compose --profile prod up)
+  app-prod:
+    build:
+      context: .
+      target: production
+    ports:
+      - "3001:3000"
+    environment:
+      - NUXT_OPENAI_KEY=${NUXT_OPENAI_KEY}
+    restart: unless-stopped
+    profiles:
+      - prod
