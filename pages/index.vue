@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useSupraIA } from '~/composables/useSupraIA';
 import { nextTick, watch, ref } from 'vue';
-import Avatarsupra from '~/components/avatarsupra.vue';
 
 const { messages, sendMessage, currentInput, isLoading, clearMessages } = useSupraIA();
 const chatContainer = ref<HTMLElement | null>(null);
@@ -23,18 +22,11 @@ watch(messages.value, async () => {
     <div class="absolute inset-0 opacity-5 pointer-events-none bg-[radial-gradient(#fb923c_1px,transparent_1px)] [background-size:16px_16px]"></div>
 
     <header class="bg-gradient-to-r from-brand-600 to-brand-500 text-white p-4 shadow-lg flex items-center justify-between relative z-20">
+ 
+ <BotaoLimpar />     
+    
+ <Avatarsupra />
 
-      <UTooltip text="Limpar conversa">
-  <UButton 
-    icon="i-heroicons-trash"
-    color="white"
-    variant="ghost"
-    size="sm"
-    @click="clearMessages"
-  />
-</UTooltip>
-      
-<Avatarsupra />
 
       <img src="/logosupra.png" alt="Supranet" class="h-8 brightness-0 invert opacity-80 hidden md:block hover:opacity-100 transition-opacity" />
     </header>
