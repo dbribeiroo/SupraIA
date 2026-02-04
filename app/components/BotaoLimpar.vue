@@ -1,4 +1,8 @@
- <template>
+<script setup lang="ts">
+const { clearMessages } = useSupraIA();
+</script>
+
+<template>
     <UButton 
   icon="i-heroicons-trash"
   label="Limpar conversa"

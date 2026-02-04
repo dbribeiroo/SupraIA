@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { useSupraIA } from '~/composables/useSupraIA';
-import { nextTick, watch, ref } from 'vue';
-
 const { messages, sendMessage, currentInput, isLoading, clearMessages } = useSupraIA();
 const chatContainer = ref<HTMLElement | null>(null);
 
@@ -14,6 +11,8 @@ watch(messages.value, async () => {
     });
   }
 });
+
+
 </script>
 
 <template>
@@ -25,7 +24,7 @@ watch(messages.value, async () => {
  
  <BotaoLimpar />     
     
- <Avatarsupra />
+ <AvatarSupra />
 
 
       <img src="/logosupra.png" alt="Supranet" class="h-8 brightness-0 invert opacity-80 hidden md:block hover:opacity-100 transition-opacity" />
@@ -85,15 +84,15 @@ watch(messages.value, async () => {
     <footer class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg p-4 border-t border-gray-200 dark:border-gray-800 relative z-20">
       <form @submit.prevent="sendMessage" class="max-w-4xl mx-auto flex gap-3 items-end">
         
-        <UInput 
+        <UInput
           v-model="currentInput"
           placeholder="Digite sua dúvida..."
           size="xl"
           :disabled="isLoading"
           class="flex-1 transition-all duration-300"
-          :ui="{ 
+          :ui="{
             rounded: 'rounded-3xl',
-            color: { gray: { outline: 'focus:ring-brand-500 focus:border-brand-500 bg-gray-50 shadow-inner' } }
+            color: { gray: { outline: 'bg-gray-50 shadow-inner' } }
           }"
           variant="outline"
           autofocus

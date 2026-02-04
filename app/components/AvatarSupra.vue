@@ -7,6 +7,9 @@
                 inset: true,
                 color: 'success'
               }"
+              :ui="{
+                image:'object-contain'
+              }"
               class="border-2 border-white shadow-lg transition-transform duration-300 group-hover:scale-105"
           />
         </div>

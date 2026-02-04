@@ -1,6 +1,14 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
+:root {
+  --ui-primary: var(--color-brand-500);
+}
+
+.dark {
+  --ui-primary: var(--color-brand-400);
+}
+
 /* Custom brand colors - all shades 50-950 required */
 @theme static {
   --color-brand-50: #fff7ed;
