@@ -35,14 +35,14 @@ watch(messages.value, async () => {
       
       <div class="flex items-center gap-4">
         <div class="relative group cursor-pointer">
-          
           <UAvatar
-    src="headsupra.png" img-class="object-cover"
-    :chip="{
-      inset: true,
-      color: 'green'
-    }"
-  />
+              src="headsupra.png"
+              :chip="{
+                inset: true,
+                color: 'success'
+              }"
+              class="border-2 border-white shadow-lg transition-transform duration-300 group-hover:scale-105"
+          />
         </div>
         
         <div>
