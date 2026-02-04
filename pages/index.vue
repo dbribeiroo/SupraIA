@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useSupraIA } from '~/composables/useSupraIA';
 import { nextTick, watch, ref } from 'vue';
+import Avatarsupra from '~/components/avatarsupra.vue';
 
 const { messages, sendMessage, currentInput, isLoading, clearMessages } = useSupraIA();
 const chatContainer = ref<HTMLElement | null>(null);
@@ -33,27 +34,7 @@ watch(messages.value, async () => {
   />
 </UTooltip>
       
-      <div class="flex items-center gap-4">
-        <div class="relative group cursor-pointer">
-          <UAvatar
-              src="headsupra.png"
-              :chip="{
-                inset: true,
-                color: 'success'
-              }"
-              class="border-2 border-white shadow-lg transition-transform duration-300 group-hover:scale-105"
-          />
-        </div>
-        
-        <div>
-          <h1 class="text-xl font-bold leading-tight tracking-wide drop-shadow-sm">Supra IA</h1>
-          <div class="flex items-center gap-1">
-            <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded-full text-white font-medium backdrop-blur-sm">
-              Online
-            </span>
-          </div>
-        </div>
-      </div>
+<Avatarsupra />
 
       <img src="/logosupra.png" alt="Supranet" class="h-8 brightness-0 invert opacity-80 hidden md:block hover:opacity-100 transition-opacity" />
     </header>
@@ -158,4 +139,3 @@ watch(messages.value, async () => {
   to { opacity: 1; transform: translateY(0); }
 }
 </style>
-
