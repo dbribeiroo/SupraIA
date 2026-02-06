@@ -1,51 +1,45 @@
-import OpenAI from 'openai';
-
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
-  
-  if (!config.openaiKey) {
-    throw createError({
-      statusCode: 500,
-      statusMessage: 'Erro de Configuração: API Key não encontrada.',
-    });
-  }
-
-  const openai = new OpenAI({
-    apiKey: config.openaiKey,
-  });
+  const agentApiUrl = config.agentApiUrl || 'http://localhost:7777';
 
   const body = await readBody(event);
   const messages = body.messages || [];
 
+  const lastUserMessage = [...messages].reverse().find((m: any) => m.role === 'user');
+
+  if (!lastUserMessage) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: 'Nenhuma mensagem de usuário encontrada.',
+    });
+  }
+
   try {
-    const completion = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
-      messages: [
-    
-        { 
-          role: "system", 
-          content: `
-            Você é o Supra, o mascote amigável da Supranet (um provedor de internet fibra óptica da região do Vale do Aço).
-            
-            Suas regras de personalidade:
-            - Você é entusiasta, usa emojis 🚀💻 e fala de forma jovem, mas profissional.
-            - Seu objetivo é ajudar clientes com dúvidas sobre internet, wi-fi e velocidade.
-            - Se perguntarem quem é você, diga que é o Supra, mascote da Supranet.
-            - Responda sempre em Português do Brasil.
-            - Seja conciso e direto.
-            - Sempre lembre as pessoas de que a Supranet é o melhor provedor de internet do Leste de Minas!
-          ` 
-        },
-        ...messages
-      ],
+    const formData = new FormData();
+    formData.append('message', lastUserMessage.content);
+    formData.append('stream', 'false');
+
+    const response = await fetch(`${agentApiUrl}/agents/supra/runs`, {
+      method: 'POST',
+      body: formData,
     });
 
-    return {
-      message: completion.choices[0].message
-    };
+    if (!response.ok) {
+      const err = await response.text();
+      console.error('AgentOS error:', response.status, err);
+      throw new Error(err);
+    }
 
-  } catch (error) {
-    console.error('Erro na OpenAI:', error);
+    const data = await response.json();
+
+    return {
+      message: {
+        role: 'assistant',
+        content: data.content,
+      },
+    };
+  } catch (error: any) {
+    console.error('Erro no AgentOS:', error?.message || error);
     throw createError({
       statusCode: 500,
       statusMessage: 'O Supra está dormindo um pouco (Erro no servidor).',

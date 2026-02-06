@@ -12,7 +12,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   runtimeConfig: {
-    openaiKey: '',
+    agentApiUrl: '',
   },
 
   vite: {

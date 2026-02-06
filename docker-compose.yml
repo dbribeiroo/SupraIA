@@ -9,12 +9,27 @@ services:
       - .:/app
       - /app/node_modules
     environment:
-      - NUXT_OPENAI_KEY=${NUXT_OPENAI_KEY}
+      - NUXT_AGENT_API_URL=http://supra-agent:7777
       - CHOKIDAR_USEPOLLING=true
       - WATCHPACK_POLLING=true
+    depends_on:
+      - supra-agent
     restart: unless-stopped
 
-  # Production service (use: docker compose --profile prod up)
+  supra-agent:
+    build:
+      context: ./supra-agent
+      target: dev
+    ports:
+      - "7777:7777"
+    volumes:
+      - ./supra-agent:/app
+      - supra-agent-data:/data
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    restart: unless-stopped
+
+  # Production services (use: docker compose --profile prod up)
   app-prod:
     build:
       context: .
@@ -22,7 +37,26 @@ services:
     ports:
       - "3001:3000"
     environment:
-      - NUXT_OPENAI_KEY=${NUXT_OPENAI_KEY}
+      - NUXT_AGENT_API_URL=http://supra-agent-prod:7777
+    depends_on:
+      - supra-agent-prod
     restart: unless-stopped
     profiles:
       - prod
+
+  supra-agent-prod:
+    build:
+      context: ./supra-agent
+      target: production
+    ports:
+      - "7777:7777"
+    volumes:
+      - supra-agent-data:/data
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    restart: unless-stopped
+    profiles:
+      - prod
+
+volumes:
+  supra-agent-data:

@@ -1,0 +1,13 @@
+[project]
+name = "supra-agent"
+version = "0.1.0"
+description = "Supra AI Agent powered by Agno AgentOS"
+requires-python = ">=3.12"
+dependencies = [
+    "agno",
+    "openai",
+    "fastapi[standard]",
+    "sqlalchemy",
+    "PyJWT",
+]
+

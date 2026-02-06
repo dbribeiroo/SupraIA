@@ -22,3 +22,12 @@ logs
 .env
 .env.*
 !.env.example
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.db
+spra-agent/.venv
+supra-agent/uv.lock
+supra-agent/.env
