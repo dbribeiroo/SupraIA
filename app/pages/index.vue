@@ -46,7 +46,7 @@ watch(messages.value, async () => {
       >
         <UAvatar 
           v-if="msg.role === 'assistant'"
-          src="/supra.png"
+          src="/headsupra.png"
           size="xs"
           class="mb-1 border border-gray-200 bg-white shadow-sm"
         />
@@ -72,7 +72,12 @@ watch(messages.value, async () => {
       </div>
 
       <div v-if="isLoading" class="flex justify-start items-end gap-2">
-        <UAvatar src="/supra.png" size="xs" class="mb-1 opacity-70" />
+        <UAvatar
+         src="/headsupra.png" 
+         size="xs" 
+         class="mb-1 opacity-70" 
+         :ui="{ img: 'object-contain h-full w-full' }"     
+      />
         <div class="bg-white dark:bg-gray-800 p-3 rounded-2xl rounded-tl-none border border-gray-100 flex gap-1 items-center h-10 shadow-sm">
           <span class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce"></span>
           <span class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce delay-75"></span>
