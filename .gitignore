@@ -31,3 +31,4 @@ __pycache__/
 spra-agent/.venv
 supra-agent/uv.lock
 supra-agent/.env
+requirements.txt
