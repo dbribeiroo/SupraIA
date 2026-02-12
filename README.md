@@ -203,18 +203,12 @@ supraIA/
 
 ---
 
-## 📝 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
----
-
 ## 👨‍💻 Autor
 
 **Douglas Junior**
 
 - GitHub: [@dbribeiroo](https://github.com/dbribeiroo)
-- LinkedIn: [Douglas Júnior](hhttps://www.linkedin.com/in/douglas-j%C3%BAnior-6a77962a4/)
+- LinkedIn: www.linkedin.com/in/douglas-j%C3%BAnior-6a77962a4/
 - Email: dbribeirogt@gmail.com
 
 ---
