@@ -49,7 +49,6 @@ export default defineEventHandler(async (event) => {
 
     const data = await response.json();
 
-    // Save assistant message to Redis
     const assistantMessage = {
       role: 'assistant',
       content: data.content,
@@ -58,7 +57,6 @@ export default defineEventHandler(async (event) => {
     
     await redis.rpush(`chat:${conversaId}`, JSON.stringify(assistantMessage))
 
-    // Also save to PostgreSQL for permanent storage
     let conversa = await prisma.conversa.findFirst({
       where: { id: conversaId }
     })

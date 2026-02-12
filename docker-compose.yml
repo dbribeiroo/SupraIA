@@ -54,8 +54,6 @@ services:
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
     restart: unless-stopped
-
-  # Production services (use: docker compose --profile prod up)
   app-prod:
     build:
       context: .
