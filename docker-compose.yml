@@ -1,4 +1,5 @@
 services:
+
   app:
     build:
       context: .
@@ -10,10 +11,35 @@ services:
       - /app/node_modules
     environment:
       - NUXT_AGENT_API_URL=http://supra-agent:7777
+      - DATABASE_URL=postgresql://suprauser:suprapass@db:5432/supradb
+      - REDIS_URL=redis://redis:6379
       - CHOKIDAR_USEPOLLING=true
       - WATCHPACK_POLLING=true
     depends_on:
       - supra-agent
+      - db
+      - redis
+    restart: unless-stopped
+
+  db:
+    image: postgres:16-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=suprauser
+      - POSTGRES_PASSWORD=suprapass
+      - POSTGRES_DB=supradb
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
     restart: unless-stopped
 
   supra-agent:
@@ -38,8 +64,33 @@ services:
       - "3001:3000"
     environment:
       - NUXT_AGENT_API_URL=http://supra-agent-prod:7777
+      - DATABASE_URL=postgresql://suprauser:suprapass@db-prod:5432/supradb
+      - REDIS_URL=redis://redis-prod:6379
     depends_on:
       - supra-agent-prod
+      - db-prod
+      - redis-prod
+    restart: unless-stopped
+    profiles:
+      - prod
+
+  db-prod:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_USER=suprauser
+      - POSTGRES_PASSWORD=suprapass
+      - POSTGRES_DB=supradb
+    volumes:
+      - postgres-data-prod:/var/lib/postgresql/data
+    restart: unless-stopped
+    profiles:
+      - prod
+
+  redis-prod:
+    image: redis:7-alpine
+    volumes:
+      - redis-data-prod:/data
+    command: redis-server --appendonly yes
     restart: unless-stopped
     profiles:
       - prod
@@ -60,3 +111,7 @@ services:
 
 volumes:
   supra-agent-data:
+  postgres-data:
+  postgres-data-prod:
+  redis-data:
+  redis-data-prod:

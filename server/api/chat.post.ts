@@ -1,9 +1,12 @@
+import { getRedis, getPrisma } from "#imports"
+
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
   const agentApiUrl = config.agentApiUrl || 'http://localhost:7777';
 
   const body = await readBody(event);
   const messages = body.messages || [];
+  const conversaId = body.conversaId || `conversa:${Date.now()}`;
 
   const lastUserMessage = [...messages].reverse().find((m: any) => m.role === 'user');
 
@@ -15,6 +18,20 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
+    const redis = getRedis()
+    const prisma = getPrisma()
+    
+    // Save user message to Redis
+    const userMessage = {
+      role: 'user',
+      content: lastUserMessage.content,
+      timestamp: Date.now()
+    }
+    
+    await redis.rpush(`chat:${conversaId}`, JSON.stringify(userMessage))
+    await redis.expire(`chat:${conversaId}`, 86400)
+
+    // Call agent
     const formData = new FormData();
     formData.append('message', lastUserMessage.content);
     formData.append('stream', 'false');
@@ -32,7 +49,46 @@ export default defineEventHandler(async (event) => {
 
     const data = await response.json();
 
+    // Save assistant message to Redis
+    const assistantMessage = {
+      role: 'assistant',
+      content: data.content,
+      timestamp: Date.now()
+    }
+    
+    await redis.rpush(`chat:${conversaId}`, JSON.stringify(assistantMessage))
+
+    // Also save to PostgreSQL for permanent storage
+    let conversa = await prisma.conversa.findFirst({
+      where: { id: conversaId }
+    })
+    
+    if (!conversa) {
+      conversa = await prisma.conversa.create({
+        data: {
+          id: conversaId,
+          titulo: lastUserMessage.content.substring(0, 50) + '...'
+        }
+      })
+    }
+
+    await prisma.mensagem.createMany({
+      data: [
+        {
+          conversaId: conversa.id,
+          role: 'user',
+          content: lastUserMessage.content
+        },
+        {
+          conversaId: conversa.id,
+          role: 'assistant',
+          content: data.content
+        }
+      ]
+    })
+
     return {
+      conversaId,
       message: {
         role: 'assistant',
         content: data.content,

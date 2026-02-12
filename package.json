@@ -6,15 +6,19 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "preview": "nuxt preview"
   },
   "dependencies": {
     "@nuxt/ui": "^3",
+    "@prisma/client": "6.10.0",
+    "ioredis": "^5.4.2",
     "nuxt": "^4.3.0",
     "openai": "^6.17.0",
     "tailwindcss": "^4",
     "vue": "^3.5.27",
     "vue-router": "^4.6.4"
+  },
+  "devDependencies": {
+    "prisma": "6.10.0"
   }
 }

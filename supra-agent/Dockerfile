@@ -1,4 +1,3 @@
-# Development stage
 FROM python:3.12-slim AS dev
 WORKDIR /app
 
@@ -14,7 +13,6 @@ EXPOSE 7777
 
 CMD ["uv", "run", "fastapi", "dev", "agent.py", "--host", "0.0.0.0", "--port", "7777"]
 
-# Production stage
 FROM python:3.12-slim AS production
 WORKDIR /app
 
