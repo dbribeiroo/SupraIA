@@ -12,6 +12,7 @@
     "@nuxt/ui": "^3",
     "@prisma/client": "6.10.0",
     "ioredis": "^5.4.2",
+    "marked": "^17.0.3",
     "nuxt": "^4.3.0",
     "openai": "^6.17.0",
     "tailwindcss": "^4",

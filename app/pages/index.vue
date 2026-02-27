@@ -2,6 +2,7 @@
 const { messages, sendMessage, currentInput, isLoading, clearMessages } = useSupraIA()
 const chatContainer = ref<HTMLElement | null>(null)
 const showSidebar = ref(true)
+import { marked } from 'marked'
 
 watch(messages.value, async () => {
   await nextTick()
@@ -12,6 +13,11 @@ watch(messages.value, async () => {
     })
   }
 })
+
+const renderMarkdown = (text: string) => {
+  if (!text) return '';
+  return marked(text);
+};
 
 const toggleSidebar = () => {
   showSidebar.value = !showSidebar.value
@@ -41,6 +47,7 @@ const toggleSidebar = () => {
               class="p-2.5 hover:bg-white/10 rounded-xl transition-all duration-300 hover:scale-110 active:scale-95 backdrop-blur-sm"
               title="Toggle History"
             >
+            
               <UIcon 
                 :name="showSidebar ? 'i-heroicons-bars-3-bottom-left' : 'i-heroicons-bars-3'" 
                 class="w-6 h-6" 
@@ -58,7 +65,7 @@ const toggleSidebar = () => {
             src="/logosupra.png" 
             alt="Supranet" 
             class="h-8 brightness-0 invert opacity-90 hover:opacity-100 transition-all duration-300 hover:scale-110" 
-          />
+          />     
         </div>
       </header>
 
@@ -96,6 +103,7 @@ const toggleSidebar = () => {
           class="flex w-full items-end gap-3 animate-slide-up"
           :class="msg.role === 'user' ? 'justify-end' : 'justify-start'"
         >
+
          <UAvatar 
             v-if="msg.role === 'assistant'"
             src="/headsupra.png"
@@ -104,19 +112,23 @@ const toggleSidebar = () => {
           />
 
           <div 
-            class="relative p-4 max-w-[75%] shadow-lg text-sm md:text-base transition-all duration-300 hover:shadow-xl cursor-default group"
+            class="relative p-4 max-w-[75%] shadow-lg text-sm md:text-base"
             :class="[
               msg.role === 'user' 
-                ? 'bg-gradient-to-br from-brand-600 to-brand-500 text-white rounded-2xl rounded-tr-md hover:from-brand-700 hover:to-brand-600' 
-                : 'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-2xl rounded-tl-md border border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-750'
+                ? 'bg-gradient-to-br from-brand-600 to-brand-500 text-white rounded-2xl rounded-tr-md' 
+                : 'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-2xl rounded-tl-md border border-gray-100 dark:border-gray-700'
             ]"
           >
-            <p v-if="msg.role === 'assistant'" class="text-[10px] font-bold text-brand-600 dark:text-brand-400 mb-2 uppercase tracking-wider flex items-center gap-1.5">
+
+            <p v-if="msg.role === 'assistant'" class="flex items-center gap-1 text-xs font-medium mb-2 text-brand-500 dark:text-brand-400">
               <UIcon name="i-heroicons-sparkles" class="w-3.5 h-3.5" />
               Supra AI
             </p>
             
-            <p class="whitespace-pre-wrap leading-relaxed">{{ msg.content }}</p>
+            <div 
+              class="prose prose-sm sm:prose-base dark:prose-invert prose-brand max-w-none leading-relaxed" 
+               v-html="renderMarkdown(msg.content)"
+            ></div>
             
             <span 
               class="text-[10px] block text-right mt-2 opacity-60 font-medium" 
@@ -148,7 +160,7 @@ const toggleSidebar = () => {
       </main>
 
       <footer class="relative bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl p-6 border-t border-gray-200 dark:border-gray-800 z-20 shadow-2xl">
-        <form @submit.prevent="sendMessage" class="max-w-4xl mx-auto flex gap-3 items-end">
+        <form @submit.prevent="sendMessage" class="max-w-4xl mx-auto flex gap-3">
 
           <UInput
             v-model="currentInput"
@@ -172,16 +184,18 @@ const toggleSidebar = () => {
             </template>
           </UInput>
 
-          <UButton 
+          <UButton
             type="submit"
             icon="i-heroicons-paper-airplane"
             size="xl"
             :disabled="!currentInput.trim() || isLoading"
             :loading="isLoading"
-            color="brand" 
+            color="brand"
             variant="solid"
-            class="rounded-2xl w-14 h-14 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:rotate-6 shadow-lg hover:shadow-brand-300/50 hover:shadow-2xl active:scale-95 bg-gradient-to-r from-brand-600 to-brand-500"
+            class="rounded-2xl w-14 h-14 flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg hover:shadow-brand-300/50 hover:shadow-2xl active:scale-95 bg-gradient-to-r from-brand-600 to-brand-500"
           />
+
+
           
         </form>
         

@@ -3,12 +3,14 @@ from agno.agent import Agent
 from agno.db.sqlite import SqliteDb
 from agno.models.openai import OpenAIChat
 from agno.tools.websearch import WebSearchTools 
+from agno.db.sqlite import SqliteDb
 
 agent = Agent(
     name="Supra",
     id="supra",
     model=OpenAIChat(id="gpt-4o-mini"),
     db=SqliteDb(db_file="/data/supra.db"),
+    update_memory_on_run=True,
     
     tools=[WebSearchTools(backend="auto")], 
     
