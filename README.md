@@ -1,5 +1,3 @@
-```bash
-cd ~/Desktop/supraIA && cat > README.md << 'ENDOFFILE'
 <div align="center">
 
 # 🚀 SupraIA
