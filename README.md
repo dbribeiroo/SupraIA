@@ -53,12 +53,12 @@ O projeto foi desenvolvido como portfólio profissional, demonstrando habilidade
 - [x] **Containerização** - Docker Compose com 6 serviços integrados
 - [x] **Ferramentas Admin** - Prisma Studio, PgAdmin, Redis Commander
 - [x] **API REST** - Endpoints documentados e organizados
+- [x] **Markdown Rendering** - Formatação de respostas da IA
 
 ### 🔄 Próximas Melhorias
 
 - [ ] **Autenticação** - Sistema de login com sessões
 - [ ] **Multi-usuário** - Suporte a múltiplos usuários simultâneos
-- [ ] **Markdown Rendering** - Formatação de respostas da IA
 - [ ] **Upload de Arquivos** - Análise de documentos pelo agente
 - [ ] **Streaming de Respostas** - Respostas em tempo real (SSE)
 - [ ] **Temas** - Dark mode / Light mode
