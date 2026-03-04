@@ -9,5 +9,5 @@ export default defineAppConfig({
       error: 'red',
       neutral: 'slate',
     },
-  },
+  }
 })

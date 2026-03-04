@@ -268,3 +268,31 @@ const toggleSidebar = () => {
   background: #ea580c;
 }
 </style>
+
+<style scoped>
+@reference "tailwindcss";
+
+:deep(.prose table) {
+  @apply w-full border-collapse my-4 text-sm text-left overflow-hidden rounded-lg shadow-sm ring-1 ring-gray-200 dark:ring-gray-700;
+}
+
+:deep(.prose thead) {
+  @apply bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700;
+}
+
+:deep(.prose th) {
+  @apply px-4 py-3 font-semibold text-gray-900 dark:text-gray-100;
+}
+
+:deep(.prose td) {
+  @apply px-4 py-3 border-b border-gray-100 dark:border-gray-800 text-gray-700 dark:text-gray-300;
+}
+
+:deep(.prose tr:last-child td) {
+  @apply border-b-0;
+}
+
+:deep(.prose tr:hover td) {
+  @apply bg-gray-50 dark:bg-gray-800/50 transition-colors duration-150;
+}
+</style>
