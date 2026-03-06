@@ -3,6 +3,7 @@ from agno.agent import Agent
 from agno.db.sqlite import SqliteDb
 from agno.models.openai import OpenAIChat
 from agno.tools.websearch import WebSearchTools 
+from decimal import Decimal
 import csv
 import os
 
@@ -41,6 +42,7 @@ def consultar_preco_item(termo_busca: str) -> str:
         return f"ERRO CRÍTICO ao ler o arquivo: {str(e)}"
 
 def calcular_custo_cabo(distancia_metros: float, preco_metro: float) -> str:
+    
     """
     Use esta ferramenta para calcular o custo total do cabo drop.
     ATENÇÃO: Você DEVE usar a ferramenta 'consultar_preco_item' ANTES para descobrir o 'preco_metro' atualizado do 'CABO OPTICO DROP'.
@@ -49,10 +51,14 @@ def calcular_custo_cabo(distancia_metros: float, preco_metro: float) -> str:
         distancia_metros: A distância da CTO até a casa (em metros).
         preco_metro: O valor unitário do metro do cabo (use ponto para decimais, ex: 0.38).
     """
-    sobra_tecnica = 15.0
-    metragem_total = distancia_metros + sobra_tecnica
+
+    dist = Decimal(str(distancia_metros))
+    preco = Decimal(str(preco_metro))
     
-    custo_total = metragem_total * preco_metro
+    sobra_tecnica = Decimal('15.0') 
+    
+    metragem_total = dist + sobra_tecnica
+    custo_total = metragem_total * preco
     
     return f"Metragem total (com {sobra_tecnica}m de sobra): {metragem_total}m. Custo total do cabo: R$ {custo_total:.2f}"
 
