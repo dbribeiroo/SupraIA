@@ -376,16 +376,16 @@ open http://localhost:8081
 
 ---
 
-## 🎓 Aprendizados
+## 🎓 Aprendizados Técnicos
 
 Este projeto foi desenvolvido para demonstrar:
 
-✅ **Arquitetura de Agentes (MAS)** – Implementação de um sistema multi-agente (Multi-Agent System) com orquestração de especialistas dedicados.
-✅ **Model Context Protocol (MCP)** – Integração do protocolo de contexto mais moderno do mercado para desacoplar o raciocínio da IA das ferramentas operacionais via stdio.
-✅ **Engenharia de Prompt e Redução de Alucinações** – Uso de ferramentas customizadas (Tool Use) para garantir que a IA utilize dados reais de estoque e cálculos matemáticos precisos em vez de estimativas genéricas.
-✅ **DevOps & Resiliência** – Gerenciamento e orquestração de 6 serviços simultâneos em Docker Compose, garantindo isolamento de rede e persistência de dados.
-✅ **Estratégia de Persistência Híbrida** – Implementação de cache de alta performance com Redis (TTL 24h) e armazenamento relacional permanente com PostgreSQL e Prisma ORM.
-✅ **Desenvolvimento Full-Stack Nuxt 4** – Construção de uma interface reativa moderna com TypeScript, focada na experiência do usuário corporativo.
+- ✅ **Arquitetura de Agentes (MAS)** – Implementação de um sistema multi-agente (*Multi-Agent System*) com orquestração de especialistas dedicados.
+- ✅ **Model Context Protocol (MCP)** – Integração do protocolo de contexto mais moderno do mercado para desacoplar o raciocínio da IA das ferramentas operacionais via `stdio`.
+- ✅ **Engenharia de Prompt e Redução de Alucinações** – Uso de ferramentas customizadas (*Tool Use*) para garantir que a IA utilize dados reais de estoque e cálculos matemáticos precisos em vez de estimativas genéricas.
+- ✅ **DevOps & Resiliência** – Gerenciamento e orquestração de 6 serviços simultâneos em Docker Compose, garantindo isolamento de rede e persistência de dados.
+- ✅ **Estratégia de Persistência Híbrida** – Implementação de cache de alta performance com Redis (TTL 24h) e armazenamento relacional permanente com PostgreSQL e Prisma ORM.
+- ✅ **Desenvolvimento Full-Stack Nuxt 4** – Construção de uma interface reativa moderna com TypeScript, focada na experiência do usuário corporativo.
 
 ---
 
