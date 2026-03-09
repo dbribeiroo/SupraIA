@@ -2,9 +2,9 @@
 
 # 🚀 SupraIA
 
-**Agente Inteligente com Busca Web e Persistência de Dados**
+**Corporate AI Platform**
 
-*Chat AI moderno com histórico de conversas, cache Redis e banco PostgreSQL*
+*Sistema projetado para resolver problemas reais de telecomunicações*
 
 [![Nuxt](https://img.shields.io/badge/Nuxt-4.x-00DC82.svg)](https://nuxt.com/)
 [![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/)
@@ -21,21 +21,20 @@
 
 ## 📖 Sobre
 
-**SupraIA** é uma aplicação full-stack de chat com inteligência artificial que combina:
+**SupraIA** não é apenas um chat, é uma **Plataforma de Agentes de IA Corporativos** focada na automação de processos críticos de telecomunicações. O sistema utiliza uma arquitetura moderna e desacoplada que combina:
 
-- 🤖 **IA Generativa** (OpenAI GPT-4) com busca web em tempo real
-- 💾 **Persistência de dados** com PostgreSQL + Prisma ORM
-- ⚡ **Cache Redis** para performance otimizada
-- 🎨 **Interface moderna** com Nuxt 4 + Vue 3 + Nuxt UI
-- 🐳 **Containerização completa** com Docker Compose
-- 📊 **Ferramentas administrativas** (Prisma Studio, PgAdmin, Redis Commander)
+- 🤖 **Arquitetura Baseada em Agentes (AgentOS)**: IA Generativa orquestrada para tomada de decisões lógicas.
+- 🔌 **Model Context Protocol (MCP)**: Servidor de ferramentas isolado, garantindo segurança, escalabilidade e compartilhamento de funções (como cálculos financeiros e leitura de dados) entre múltiplos agentes.
+- 📊 **Integração de Dados Locais**: Leitura dinâmica de tabelas de preços para geração de orçamentos precisos em tempo real.
+- 💾 **Persistência Dupla e Cache**: PostgreSQL + Prisma ORM para dados permanentes e Redis para cache ultra-rápido de mensagens.
+- 🎨 **Interface Corporativa**: Frontend reativo com Nuxt 4 + Vue 3 + Nuxt UI.
+- 🐳 **Infraestrutura Escalável**: Containerização completa com Docker Compose 
 
 O projeto foi desenvolvido como portfólio profissional, demonstrando habilidades em:
-- Arquitetura de microsserviços
-- Integração frontend/backend
-- Gerenciamento de estado e cache
-- DevOps e containerização
-- Boas práticas de desenvolvimento
+- Arquitetura de Microsserviços e Protocolo MCP
+- Automação de Regras de Negócio e Cálculos Financeiros (Viabilidade de Rede)
+- Integração Frontend/Backend com gerenciamento avançado de estado
+- DevOps, Containerização e ferramentas administrativas (Prisma Studio, PgAdmin)
 
 ---
 
@@ -43,27 +42,24 @@ O projeto foi desenvolvido como portfólio profissional, demonstrando habilidade
 
 ### 🎯 Implementadas
 
-- [x] **Chat com IA** - Interface conversacional com GPT-4
-- [x] **Busca Web em Tempo Real** - DuckDuckGo Search integrado ao agente
-- [x] **Histórico de Conversas** - Sidebar com lista de conversas anteriores
-- [x] **Persistência Dupla** - Redis (cache 24h) + PostgreSQL (permanente)
-- [x] **CRUD Completo** - Criar, listar, carregar e deletar conversas
-- [x] **Cache Inteligente** - Redis para acesso rápido, PostgreSQL para backup
-- [x] **Interface Responsiva** - Design moderno com Nuxt UI + Tailwind
-- [x] **Containerização** - Docker Compose com 6 serviços integrados
-- [x] **Ferramentas Admin** - Prisma Studio, PgAdmin, Redis Commander
-- [x] **API REST** - Endpoints documentados e organizados
-- [x] **Markdown Rendering** - Formatação de respostas da IA
+- [x] **Agente Engenheiro de Custos** - IA especializada em calcular viabilidade de infraestrutura de fibra óptica.
+- [x] **Servidor MCP Isolado** - Separação da lógica de ferramentas (músculos) do motor de IA (cérebro), permitindo escalabilidade.
+- [x] **Motor de Cálculo Financeiro** - Processamento de custos de cabeamento e sobra técnica com precisão bancária.
+- [x] **Extração de Dados Locais** - Leitura e busca de equipamentos em arquivos CSV de estoque integrados à IA.
+- [x] **Busca Web em Tempo Real** - DuckDuckGo Search integrado para contexto externo.
+- [x] **Histórico de Conversas** - Sidebar com lista de conversas anteriores e CRUD completo.
+- [x] **Persistência Dupla** - Redis (cache 24h) + PostgreSQL (permanente).
+- [x] **Interface Responsiva** - Design moderno com formatação dinâmica de tabelas de orçamento via Nuxt UI + Tailwind.
+- [x] **API REST** - Endpoints documentados para comunicação entre Nuxt e Python.
 
-### 🔄 Próximas Melhorias
+### 🔄 Próximas Melhorias (Roadmap Multi-Agentes)
 
-- [ ] **Autenticação** - Sistema de login com sessões
-- [ ] **Multi-usuário** - Suporte a múltiplos usuários simultâneos
-- [ ] **Upload de Arquivos** - Análise de documentos pelo agente
-- [ ] **Streaming de Respostas** - Respostas em tempo real (SSE)
-- [ ] **Temas** - Dark mode / Light mode
-- [ ] **Exportar Conversas** - Download em PDF/JSON
-- [ ] **Busca no Histórico** - Filtrar conversas antigas
+- [ ] **Orquestrador de Agentes** - Sistema de roteamento inteligente que direciona a dúvida do usuário para o especialista correto.
+- [ ] **Agente de Customer Success / Suporte** - Novo especialista focado em retenção de clientes e troubleshooting técnico.
+- [ ] **Agente Comercial** - Especialista focado em vendas e planos de internet, compartilhando o mesmo Servidor MCP.
+- [ ] **Autenticação** - Sistema de login com isolamento de histórico por usuário/setor.
+- [ ] **Streaming de Respostas** - Experiência de digitação fluida em tempo real (SSE).
+- [ ] **Integração com ERP (SGP/IXC)** - Conectar o servidor MCP diretamente ao banco de dados do provedor.
 
 ---
 
@@ -83,12 +79,14 @@ O projeto foi desenvolvido como portfólio profissional, demonstrando habilidade
 
 | Tecnologia | Versão | Descrição |
 |------------|--------|-----------|
-| **Python** | 3.11+ | Linguagem do agente IA |
-| **Agno (AgentOS)** | Latest | Framework para agentes IA |
-| **OpenAI API** | GPT-4 | Modelo de linguagem |
-| **DuckDuckGo Search** | 8.x | Busca web integrada |
-| **Nuxt Server** | 4.x | API Routes (backend Nuxt) |
-| **Bun** | Latest | Runtime JavaScript moderno |
+| **Python** | 3.12 | Linguagem principal do ecossistema de IA |
+| **Agno (AgentOS)** | Latest | Framework de orquestração para agentes IA |
+| **FastMCP** | Latest | Servidor local para Model Context Protocol (stdio) |
+| **uv** | Latest | Gerenciador de pacotes e ambientes virtuais ultra-rápido |
+| **OpenAI API** | GPT-4mini | Motor cognitivo e processamento de linguagem |
+| **DuckDuckGo** | 8.x | Ferramenta de busca web em tempo real |
+| **Nuxt Server** | 4.x | API Routes para comunicação com o frontend |
+| **Bun** | Latest | Runtime JavaScript moderno para o backend Node |
 
 ### Banco de Dados & Cache
 
@@ -200,7 +198,6 @@ docker compose down -v
 
 ## 🏗️ Arquitetura
 
-```
 ┌─────────────────────────────────────────────────────────────────┐
 │                         FRONTEND (Nuxt 4)                       │
 │                                                                 │
@@ -221,7 +218,7 @@ docker compose down -v
 │  ┌──────────────────────────────────────────────────────────┐   │
 │  │  POST /api/chat - Enviar mensagem                        │   │
 │  │  1. Salva no Redis (cache 24h)                           │   │
-│  │  2. Chama Python Agent (IA + Busca Web)                  │   │
+│  │  2. Chama Motor de IA (Agent + MCP)                      │   │
 │  │  3. Salva resposta no Redis                              │   │
 │  │  4. Persiste tudo no PostgreSQL                          │   │
 │  └──────────────────────────────────────────────────────────┘   │
@@ -238,17 +235,20 @@ docker compose down -v
 │  │  DELETE /api/chat/[id] - Deletar conversa                │   │
 │  └──────────────────────────────────────────────────────────┘   │
 └─────────────────────────────────────────────────────────────────┘
-           │                    │                    │
-           ▼                    ▼                    ▼
-    ┌───────────┐        ┌───────────┐       ┌──────────────┐
-    │   REDIS   │        │POSTGRESQL │       │ PYTHON AGENT │
-    │  (Cache)  │        │ (Prisma)  │       │  (AgentOS)   │
-    │  Port:    │        │  Port:    │       │  Port: 7777  │
-    │   6379    │        │   5432    │       │              │
-    │           │        │           │       │ - OpenAI GPT │
-    │ TTL: 24h  │        │ Permanente│       │ - DuckDuckGo │
-    └───────────┘        └───────────┘       └──────────────┘
-```
+           │                    │                           │
+           ▼                    ▼                           ▼
+    ┌───────────┐        ┌───────────┐       ┌──────────────────────────────────────────┐ 
+    │   REDIS   │        │POSTGRESQL │       │           MOTOR DE IA (Python)           │
+    │  (Cache)  │        │ (Prisma)  │       │                                          │
+    │  Port:    │        │  Port:    │       │  ┌──────────────┐      ┌──────────────┐  │
+    │   6379    │        │   5432    │       │  │ PYTHON AGENT │      │  MCP SERVER  │  │
+    │           │        │           │       │  │  (AgentOS)   │<─┬──>│  (FastMCP)   │  │
+    │ TTL: 24h  │        │ Permanente│       │  │  Port: 7777  │  │   │  Background  │  │
+    └───────────┘        └───────────┘       │  │ - Orquestrar │stdio │ - Ler CSV    │  │
+                                             │  │ - OpenAI GPT │  │   │ - Calc Mat.  │  │
+                                             │  │ - DuckDuckGo │  │   │ - APIs Locais│  │
+                                             │  └──────────────┘  │   └──────────────┘  │
+                                             └────────────────────┴─────────────────────┘
 
 ---
 
@@ -286,13 +286,15 @@ Frontend → useSupraIA.sendMessage() → POST /api/chat
 ### 2️⃣ Backend processa
 
 ```
-1. Salva mensagem do usuário no Redis
-2. Chama Python Agent (http://supra-agent:7777)
-3. Agent processa com GPT-4 + DuckDuckGo Search
-4. Salva resposta no Redis
-5. Persiste tudo no PostgreSQL (Prisma)
-6. Retorna resposta para o frontend
-```
+1. Salva mensagem do usuário no Redis (Cache de sessão).
+2. Chama Motor de IA (http://supra-agent:7777).
+3. Agente analisa a intenção (Raciocínio):
+   - Se precisar de contexto externo: Usa DuckDuckGo Search.
+   - Se precisar de dados de estoque/preços: Chama Servidor MCP (mcp_server.py).
+4. Servidor MCP executa a lógica local e retorna dados precisos ao Agente.
+5. Agente consolida a resposta final.
+6. Salva resposta no Redis e persiste no PostgreSQL via Prisma.
+7. Retorna resposta formatada (Markdown) para o frontend.
 
 ### 3️⃣ Frontend exibe
 
@@ -361,12 +363,15 @@ open http://localhost:8081
 
 ## 📈 Métricas do Projeto
 
-- **Linhas de código:** ~2.000+
+- **Arquitetura:** Multi-Agent System (MAS) com suporte a MCP.
+- **Linhas de código:** ~3669 linhas.
 - **Componentes Vue:** 3
 - **API Endpoints:** 4
 - **Serviços Docker:** 6
-- **Tecnologias:** 15+
-- **Tempo de desenvolvimento:** 2 semanas
+- **Protocolos de IA:** Model Context Protocol (MCP) via stdio.
+- **Tempo de resposta (Cache):** < 50ms (Redis).
+- **Tecnologias:** 17+ (Nuxt 4, Vue 3, Python 3.12, Agno, FastMCP, Docker, Prisma, etc.).
+- **Tempo de desenvolvimento:** 1 mês.
 
 ---
 
@@ -374,13 +379,12 @@ open http://localhost:8081
 
 Este projeto foi desenvolvido para demonstrar:
 
-✅ **Arquitetura Full-Stack** - Frontend + Backend + Banco + Cache  
-✅ **Integração de IA** - OpenAI GPT-4 com ferramentas customizadas  
-✅ **Persistência de Dados** - Redis (cache) + PostgreSQL (permanente)  
-✅ **DevOps** - Docker Compose com múltiplos serviços  
-✅ **Boas Práticas** - TypeScript, Prisma ORM, API REST  
-✅ **UI/UX Moderno** - Nuxt UI + Tailwind CSS  
-
+✅ **Arquitetura de Agentes (MAS)** – Implementação de um sistema multi-agente (Multi-Agent System) com orquestração de especialistas dedicados.
+✅ **Model Context Protocol (MCP)** – Integração do protocolo de contexto mais moderno do mercado para desacoplar o raciocínio da IA das ferramentas operacionais via stdio.
+✅ **Engenharia de Prompt e Redução de Alucinações** – Uso de ferramentas customizadas (Tool Use) para garantir que a IA utilize dados reais de estoque e cálculos matemáticos precisos em vez de estimativas genéricas.
+✅ **DevOps & Resiliência** – Gerenciamento e orquestração de 6 serviços simultâneos em Docker Compose, garantindo isolamento de rede e persistência de dados.
+✅ **Estratégia de Persistência Híbrida** – Implementação de cache de alta performance com Redis (TTL 24h) e armazenamento relacional permanente com PostgreSQL e Prisma ORM.
+✅ **Desenvolvimento Full-Stack Nuxt 4** – Construção de uma interface reativa moderna com TypeScript, focada na experiência do usuário corporativo.
 
 ---
 
