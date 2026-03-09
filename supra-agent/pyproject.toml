@@ -10,5 +10,6 @@ dependencies = [
     "sqlalchemy",
     "PyJWT",
     "ddgs",
+    "mcp",
 ]
 

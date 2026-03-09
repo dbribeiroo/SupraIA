@@ -1,66 +1,16 @@
+import os
+import sys
 from agno.os import AgentOS
 from agno.agent import Agent
 from agno.db.sqlite import SqliteDb
 from agno.models.openai import OpenAIChat
 from agno.tools.websearch import WebSearchTools 
-from decimal import Decimal
-import csv
-import os
+from agno.tools.mcp import MCPTools
 
-def consultar_preco_item(termo_busca: str) -> str:
-
-    diretorio_atual = os.path.dirname(os.path.abspath(__file__))
-    arquivos_na_pasta = os.listdir(diretorio_atual)
-    
-    nome_arquivo_real = None
-    for arquivo in arquivos_na_pasta:
-        if "tabela_precos" in arquivo.lower() and "csv" in arquivo.lower():
-            nome_arquivo_real = arquivo
-            break
-            
-    if not nome_arquivo_real:
-        return f"ERRO CRÍTICO: Nenhum arquivo CSV encontrado. A pasta tem: {arquivos_na_pasta}"
-        
-    caminho_arquivo = os.path.join(diretorio_atual, nome_arquivo_real)
-    
-    try:
-        with open(caminho_arquivo, mode='r', encoding='utf-8', errors='ignore') as file:
-            leitor_csv = csv.reader(file, delimiter=';') 
-            
-            resultados = []
-            for linha in leitor_csv:
-                linha_texto = " | ".join(linha).upper()
-                if termo_busca.upper() in linha_texto:
-                    resultados.append(linha_texto)
-                    
-            if resultados:
-                return "DADOS ENCONTRADOS NO BANCO:\n" + "\n".join(resultados[:10])
-            else:
-                return f"ERRO CRÍTICO: O arquivo {nome_arquivo_real} foi lido, mas não achei '{termo_busca}' dentro dele. (Tente mudar o delimiter para ',')"
-                
-    except Exception as e:
-        return f"ERRO CRÍTICO ao ler o arquivo: {str(e)}"
-
-def calcular_custo_cabo(distancia_metros: float, preco_metro: float) -> str:
-    
-    """
-    Use esta ferramenta para calcular o custo total do cabo drop.
-    ATENÇÃO: Você DEVE usar a ferramenta 'consultar_preco_item' ANTES para descobrir o 'preco_metro' atualizado do 'CABO OPTICO DROP'.
-    
-    Args:
-        distancia_metros: A distância da CTO até a casa (em metros).
-        preco_metro: O valor unitário do metro do cabo (use ponto para decimais, ex: 0.38).
-    """
-
-    dist = Decimal(str(distancia_metros))
-    preco = Decimal(str(preco_metro))
-    
-    sobra_tecnica = Decimal('15.0') 
-    
-    metragem_total = dist + sobra_tecnica
-    custo_total = metragem_total * preco
-    
-    return f"Metragem total (com {sobra_tecnica}m de sobra): {metragem_total}m. Custo total do cabo: R$ {custo_total:.2f}"
+caminho_atual = os.path.dirname(os.path.abspath(__file__))
+caminho_mcp = os.path.join(caminho_atual, "mcp_server.py")
+python_bin = sys.executable
+mcp_tools = MCPTools(command=f'{python_bin} "{caminho_mcp}"')
 
 agent = Agent(
     name="Supra",
@@ -69,7 +19,7 @@ agent = Agent(
     db=SqliteDb(db_file="/data/supra.db"),
     update_memory_on_run=True,
     
-    tools=[WebSearchTools(backend="auto"), consultar_preco_item, calcular_custo_cabo], 
+    tools=[WebSearchTools(), mcp_tools],
     
     add_history_to_context=True,
     markdown=True,
