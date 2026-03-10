@@ -34,3 +34,4 @@ supra-agent/.env
 requirements.txt
 
 tabela_precos.csv
+historico_consumo.csv
